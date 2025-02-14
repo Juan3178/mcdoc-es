@@ -1,0 +1,40 @@
+.bg_screen {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('/storage/emulated/0/Download/Gráficos Vectoriales/bg_screen_mcdoc-es.svg');
+	background-size: cover;
+	/*background-position: center;*/
+	z-index: 3177;
+}
+.choose_version_txt {
+	width: 57%; /*+57*/
+}
+.mc_choose_version {
+	width: 57%;
+	height: unset;
+	background-color: red;
+	animation: change-bg-color 10s infinite;
+}
+.screen_content {
+	z-index: 3178;
+	font-family: Arial, sans-serif;
+}
+.title {
+	font-family: monospace;
+	font-size: 120;
+	width: 40%;
+}
+@keyframes change-bg-color {
+	0% {
+		background-color: rgb(103,255,102);
+	}
+	50% {
+		background-color: rgb(191,94,255);
+	}
+	100% {
+		background-color: rgb(103,255,102);
+	}
+}
