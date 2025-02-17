@@ -12,20 +12,52 @@
 .choose_version_txt {
 	width: 57%; /*+57*/
 }
+.hide_scrollbar {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+.horizontal_opt {
+	display: inline-block;
+	padding: 0px 3%;
+	width: fit-content;
+	border-right: 1px solid #ccc;
+}
 .mc_choose_version {
 	width: 57%;
 	height: unset;
 	background-color: red;
 	animation: change-bg-color 10s infinite;
 }
+.pad_48px {
+	padding: 48px;
+}
 .screen_content {
 	z-index: 3178;
 	font-family: Arial, sans-serif;
+}
+.storage_content {
+	z-index: 3179;
+	width: 75%;
+	height: 33%;
+	background-color: transparent;
+}
+.text_craft {
+	width: 99%;
+	overflow-x: auto;
+	padding: 3px;
+	border: 1px solid #ccc;
+	white-space: nowrap;
 }
 .title {
 	font-family: monospace;
 	font-size: 120;
 	width: 40%;
+}
+.vertical_opt {
+	display: inline-block;
+	padding: 2.4% 0px;
+	width: 95%;
+	border-bottom: 1px solid #ccc;
 }
 @keyframes change-bg-color {
 	0% {
