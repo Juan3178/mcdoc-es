@@ -1,0 +1,368 @@
+<center><h1>Documentación de: "Feature rules" (regla de características)</h1><h2>V1.21.44</h2></center>
+</br>
+Este archivo le agrega "reglas" de generación a los bloques, estructuras, arboles, etc. Hay ciertas reglas como el bioma en donde aparecera cierta característica, su generación y distribución.
+</br></br>
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 200%;">
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#json_schema">Esquema JSON</a></th></tr>
+
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#whats_a_feature_rules">¿Que es un Feature Rules?</a></th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="left"><a href="#schema">Esquema</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#description">Description</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#conditions">Conditions</a></td></tr>
+
+	<tr><th align="left" style="border-style: solid; border-width: 3;"><a href="#filter_group_simply">Grupo de Filtro (simplificado)</a></th></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#distribution">Distribution</a></th></tr>
+
+	<tr><th align="left" style="border-style: solid; border-width: 3;"><a href="#random_distribution_type">Tipo de distribución aleatoria</a></th></tr>
+
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#query">Palabras claves</a></th></tr>
+
+</table></br></br>
+<p style="font-family: arial;">Toda esta información lo puedes encontrar de manera oficial aqui: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable">(disponible solo en ingles)</a></p>
+</br></br>
+<center>
+	<h4 id="json_schema">Esquema JSON <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rule-schema">#</a></h4>
+<textarea readonly="true" cols="100" rows="32">
+{
+  version "format_version"
+  object "minecraft:feature_rules"
+  {
+    object "description"
+    {
+      string "identifier" // The name of this feature rule in the format 'namespace_name:rule_name'. 'rule_name' must match the filename.
+      feature_reference "places_feature" // Named reference to the feature controlled by this rule.
+    }
+    object "conditions" // Parameters to control where and when the feature will be placed.
+    {
+      string "placement_pass" // When the feature should be placed relative to others. Earlier passes in the list are guaranteed to occur before later passes. Order is not guaranteed within each pass.
+      biome_filter_group "minecraft:biome_filter" : opt // List of filter tests to determine which biomes this rule will attach to. Object of type FilterGroup
+    }
+      object "distribution" : opt // Parameters controlling the initial scatter of the feature. Object of type ScatterParams
+  }
+}
+</textarea>
+</center>
+</br></br>
+<center><h2 id="whats_a_feature_rules">¿Que es un Feature Rules?</h2></center>
+"Los Feature Rules son definiciones de archivos JSON separados, se encuentran en la subcarpeta del paquete de comportamientos 'feature_rules'. Los Feature rules siguen las mismas reglas de <a style="font-family: monospace;" href="#"><b>FILENAME</b></a> como los <a style="font-family: monospace;" href="#"><b>FEATURES</b></a>. Cada regla de característica controla exactamente una característica y sirve como la raiz de una cadena de características de datos." <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-size: 70%;"><i>[1]</i></a>
+</br></br>
+<center></br>
+<!---<image weight="748" height="695" src="/storage/emulated/0/Download/custom_feature_behavior_pack_structure.png"></image>--->
+	<image weight="748" height="695" src="https://learn.microsoft.com/en-us/minecraft/creator/reference/media/featuresintroduction/custom_feature_behavior_pack_structure.png?view=minecraft-bedrock-stable"></image></br>
+	<h4 style="color: #888; font-size: 55%; font-family: arial;">directorios que almacenan las características y sus reglas</h4>
+</center>
+<h3>Ejemplo:</h3>
+<center>
+<textarea readonly="true" cols="100" rows="32">
+{
+  "format_version": "1.13.0",
+  "minecraft:feature_rules": {
+    "description": {
+      "identifier": "ec:custom_feature_rules",
+      "places_feature": "ec:custom_features_spawn"
+    },
+    "conditions": {
+      "placement_pass": "surface_pass",
+      "minecraft:biome_filter": [
+        {
+          "any_of": [
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld_generation"
+            }
+          ]
+        }
+      ]
+    },
+    "distribution": {
+      "iterations": 1,
+      "scatter_chance": 0.21,
+      "x": {
+        "distribution": "uniform",
+        "extent": [ 0, 16 ]
+      },
+      "y": "q.heightmap(v.worldx, v.worldz)",
+      "z": {
+        "distribution": "uniform",
+        "extent": [ 0, 16 ]
+      }
+    }
+  }
+}
+</textarea>
+</center></br></br>
+<div style="background-color: #ffff99; padding: 3%; border-radius: 60px; font-family: arial;">
+<h2 style="font-family: serif;">⚠ Advertencia:</h2> El nombre del archivo debe coincidir exactamente igual al identificador del <b>Feature Rules</b>.
+</div></br>
+
+<h4>Ejemplo:</h4>
+Si el identificador del archivo es:</br></br>
+"ec:custom_feature_rules".</br></br>
+Entonces tu archivo debe de llamarse:</br></br>
+"custom_feature_rules.json"</br></br>
+
+<div style="background-color: #aaa;">
+<h3>custom_feature_rules.json</h3></br>
+<center>
+	<textarea readonly="true" cols="100" rows="10">
+{
+  "format_version": "1.13.0",
+  "minecraft:feature_rules": {
+    "description": {
+      "identifier": "ec:custom_feature_rules",
+      "places_feature": "ec:custom_features_spawn"
+    }
+  }
+}
+</textarea>
+</br></br>.
+</center>
+</div></br>
+
+<h4 id="schema">Esquema:</h4>
+<ul>
+	<li>La versión de formato del archivo es "1.13.0".</li></br>
+	<li>El <a href="#" style="font-family: monospace;"><b>OBJECT</b></a> llamado <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rule-definition">"minecraft:feature_rules"</a> esta dividido en 3 partes:</li></br>
+<!--Esta parte se debe actualizar a una tabla-->
+	<ol>
+		<li><b>description</b>: Describe la información que permitira que se genere ciertas características en la generación de terreno.</li></br>
+		<li><b>conditions</b>: Define en que condiciones específicas se generara ciertas características en la generación de terreno.</li></br>
+		<li><b>distribution</b>: Es el encargado de como se distribuira cierta característica en las condiciones ya establecidas.</li>
+	</ol>
+</ul>
+</br><hr></br>
+
+<h2 id="description">Description:</h2>
+<div style="background-color: #aaa;">
+<h3>custom_feature_rules.json</h3></br>
+<center>
+	<textarea readonly="true" cols="100" rows="7">
+{
+    "description": {
+      "identifier": "ec:custom_feature_rules",
+      "places_feature": "ec:custom_features_spawn"
+    }
+}
+</textarea>
+</br></br>.
+</center>
+</div></br>
+Dentro del <a href="#" style="font-family: monospace;"><b>OBJECT</b></a> llamado <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rule-description">"description"</a> estan los siguientes datos:</br>
+<!--Esta parte se debe actualizar a una tabla-->
+<ul>
+	<li><b>identifier</b>: Es el identificador de tu archivo "feature_rules" y también el nombre del mismo.</br>(Es opcional usar "_feature_rules")</li></br>
+	<li><b>places_feature</b>: Coloca en tu mundo con las reglas ya establecidas la característica que agregastes. (la información que esta aqui, se encuentra en la carpeta <a style="font-family: monospace;" href="#"><b>FEATURES</b></a>)</li>
+</ul></br><hr></br>
+<h2 id="conditions">conditions:</h2>
+<div style="background-color: #aaa;">
+<h3>custom_feature_rules.json</h3></br>
+<center>
+	<textarea readonly="true" cols="100" rows="21">
+{
+    "conditions": {
+      "placement_pass": "surface_pass",
+      "minecraft:biome_filter": [
+        {
+          "any_of": [
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld_generation"
+            }
+          ]
+        }
+      ]
+    }
+}
+</textarea>
+</br></br>.
+</center></div></br>
+Dentro del <a href="#" style="font-family: monospace;"><b>OBJECT</b></a> llamado <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rule-conditions">"conditions"</a> estan los siguientes datos:</li></br>
+<ul>
+	<li><b>placement_pass</b>: Cuando la característica debe colocarse en relación con otras. Se garantiza que los pass anteriores en la lista ocurran antes que los pases posteriores. El orden no está garantizado dentro de cada pass, tiene 12 datos que son:</li>
+</ul>
+</br>
+<table border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3;">Nombre</th><th style="border-style: solid; border-width: 3;">Descripción</th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">after_sky_pass</td><td style="border-style: solid; border-width: 3;">No hay información disponible por el momento. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">File not found</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">after_surface_pass</td><td style="border-style: solid; border-width: 3;">No hay información disponible por el momento. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">feature_rules/bamboo_jungle_after_surface_bamboo_feature.json</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">after_underground_pass</td><td style="border-style: solid; border-width: 3;" rowspan="2">No hay información disponible por el momento. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">File not found</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">before_sky_pass</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">before_surface_pass</td><td style="border-style: solid; border-width: 3;">No hay información disponible por el momento. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">feature_rules/mesa_before_surface_gold_ore_feature.json</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">before_underground_pass</td><td style="border-style: solid; border-width: 3;" rowspan="2">No hay información disponible por el momento. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">File not found</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">final_pass</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">first_pass</td><td style="border-style: solid; border-width: 3;">Permite que las características se generen como una decoración, y es utilizado en las flores y las bayas dulces. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">feature_rules/cold_taiga_first_sweet_berry_bush_feature.json</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">pregeneration_pass</td><td style="border-style: solid; border-width: 3;">Es una pregeneración y es utilizado en las antiguas cuevas del overworld y del nether. - encontrado en:  <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">feature_rules/nether_cave_carver_feature.json</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">sky_pass</td><td style="border-style: solid; border-width: 3;">No hay información disponible por el momento. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">File not found</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">surface_pass</td><td style="border-style: solid; border-width: 3;">El objeto aparece en la superficie del mundo, y es usado en generaciones de pasto, pasto alto, y algunos bloques. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">feature_rules/bamboo_jungle_surface_tall_grass_feature.json</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">underground_pass</td><td style="border-style: solid; border-width: 3;">permite que el objeto aparezca bajo la superficie, y es usado en los minerales del juego. - encontrado en: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#feature-rules" style="font-family: monospace;">feature_rules/nether_soul_sand_underground_feature_rules.json</a>.</td></tr>
+</table></br>
+
+<ul>
+	<li><b>minecraft:biome_filter</b>: Este es un <a href="#" style="font-family: monospace;"><b>minecraft_filter</b></a> que define en que biomas se generara la característica. El "minecraft_filter" utiliza el siguiente <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#filter-group">Grupo de Filtro</a>.</li>
+</ul></br>
+
+<h3 id="filter_group_simply">Grupo de filtro (simplificado):</h3>
+<table border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3;">Nombre</th><th style="border-style: solid; border-width: 3;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th><th style="border-style: solid; border-width: 3;">Descripción</th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">AND</td><td style="border-style: solid; border-width: 3;" rowspan="6" align="center">Objeto de tipo "Filter Group"</td><td align="center" rowspan="6">❌</td>
+<td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben aprobarse para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">NOT</td><td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben fallar para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">OR</td><td style="border-style: solid; border-width: 3;">Evalúa pruebas en el grupo, una o más deben aprobarse para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">all_of</td><td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben aprobarse para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">none_of</td><td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben fallar para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">any_of</td><td style="border-style: solid; border-width: 3;">Evalúa pruebas en el grupo, una o más deben aprobarse para que el grupo apruebe.</td></tr>
+</table></br></br>
+Puedes encontrar un ejemplo de <b>minecraft_filter</b> (para los biomas) <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/definitions/nestedtables/biome_filter?view=minecraft-bedrock-stable">aqui</a>.
+</br></br>
+
+<h2 id="distribution">distribution:</h2>
+<div style="background-color: #aaa;">
+<h3>custom_feature_rules.json</h3></br>
+<center>
+	<textarea readonly="true" cols="100" rows="14">
+{
+    "distribution": {
+      "iterations": 1,
+      "scatter_chance": 0.21,
+      "x": {
+        "distribution": "uniform",
+        "extent": [ 0, 16 ]
+      },
+      "y": "q.heightmap(v.worldx, v.worldz)",
+      "z": {
+        "distribution": "uniform",
+        "extent": [ 0, 16 ]
+      }
+    }
+}
+</textarea>
+</br></br>.
+</center></div></br>
+Dentro del <a href="#" style="font-family: monospace;"><b>OBJECT</b></a> llamado <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/featuresreference/examples/featuresintroduction?view=minecraft-bedrock-stable#scatter-params">"distribution"</a> estan los siguientes datos:</li></br>
+
+<ul>
+	<li><b>iterations</b>: Es la cantidad de características que aparecera en un lugar. No solamente puede ser un <a href="#" style="font-family: monospace;"><b>INTEGER</b></a>, sino también un <a href="#" style="font-family: monospace;"><b>STRING</b></a> para valores matematicos mas complejos como "math.random(min,max)" o también variables.</li></br>
+
+	<li><b>coordinate_eval_order</b>: el orden en el que se evaluarán las coordenadas. Se debe utilizar cuando una coordenada depende de otra. Si se omite, el valor predeterminado es "xzy". Los órdenes admitidos se definen en <a href="#coordinate_evaluation_order">"Coordinate Evaluation Order".</a></li></br>
+</ul>
+
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 200%;">
+	<tr><th align="center" style="border-style: solid; border-width: 3;" id="coordinate_evaluation_order">Coordinate Evaluation Order</th></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">xyz</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">xzy</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">yxz</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">yzx</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">zxy</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">zyx</td></tr>
+
+</table></br></br>
+<ul>
+	<li><b>scatter_chance</b>: Define la probabilidad de que esta característica aparezca en un chunk, su valor predeterminado es 1, pero existen 3 maneras de usarlo:</li></br>
+
+	<ol><hr></br>
+		<li style="font-family: monospace;">   "scatter_chance": 0.72</li></br><hr></br>
+		<li style="font-family: monospace;">   "scatter_chance": "v.is_legacy ? 0.0 : 100.0"</li></br><hr></br>
+		<li style="font-family: monospace;">   "scatter_chance": {
+</br>"numerator": 1,
+</br>"denominator": 12
+</br>}
+</br>// 1÷12= 0,08333333333</li></br><hr></br>
+	</ol>
+	<li><b>x, y & z</b>: Define el desplazamiento (<a href="#" style="font-family: monospace;"><b>OFFSET</b></a>) en el que aparecera la característica. <b>X</b> y <b>Z</b> define desde que distancia de desplazamiento se genera la característica, mientras que <b>Y</b> define la altura. Hay 3 maneras de usarlo:</li></br>
+	<ol><hr></br>
+		<li style="font-family: monospace;">   "x": 8,</br>"y": 64,</br>"z": 8</li></br><hr></br>
+		<li style="font-family: monospace;">   "x": "math.random(0,16)",</br>"y": "q.heightmap(v.worldx, v.worldz)",</br>"z": "math.random(0,16)"</li></br><hr></br>
+		<li style="font-family: monospace;">   "x": {</br>"distribution": "uniform",</br>"extent": [ 0, 16 ]</br>},</br>"y": "q.heightmap(v.worldx, v.worldz)",</br>"z": {</br>"distribution": "uniform",</br>"extent": [ 0, 16 ]</br>}</li>
+	</ol></br><hr>
+</ul></br>
+La 3<i>ra</i> manera es generalmente usado en el código del juego para la decoración del mundo, además, requiere de parametros adicionales que son:</br></br>
+
+<table border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3;">Nombre</th><th style="border-style: solid; border-width: 3;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th><th style="border-style: solid; border-width: 3;">Descripción</th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;">distribution</td><td style="border-style: solid; border-width: 3;" align="center">Cadena de tipo "Random Distribution Type"</td><td align="center" rowspan="2" style="border-style: solid; border-width: 3;">✅</td>
+<td style="border-style: solid; border-width: 3;">Tipo de distribución. Las distribuciones soportadas son definidos por <a href="#random_distribution_type">"Random Distribution Type"</a>.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">extent</td><td style="border-style: solid; border-width: 3;" align="center"><a style="font-family: monospace" href="#"><b>ARRAY</b></a></td><td style="border-style: solid; border-width: 3;">Límite inferior y superior (inclusive) del rango de dispersión, como un desplazamiento desde el punto de entrada alrededor del cual se dispersa.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">grid_offset</td><td style="border-style: solid; border-width: 3;" align="center" rowspan="2"><a href="#" style="font-family: monospace;"><b>INTEGER</b></a></td><td style="border-style: solid; border-width: 3;" align="center" rowspan="2">❌</td><td style="border-style: solid; border-width: 3;">Cuando el tipo de distribución es "grid", define el desplazamiento a lo largo de este eje.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">step_size</td><td style="border-style: solid; border-width: 3;">Cuando el tipo de distribución es "grid", define la distancia entre pasos a lo largo de este eje.</td></tr>
+</table></br></br></br></br>
+
+<h2 id="random_distribution_type">Random Distribution Type:</h2>
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 140%;">
+	<tr><th style="border-style: solid; border-width: 3;">Nombre</th><th style="border-style: solid; border-width: 3;">Descripción</th></tr>
+	
+	<tr><td align="center" style="border-style: solid; border-width: 3;">fixed_grid</td><td align="center" style="border-style: solid; border-width: 3; font-family: monospace;" rowspan="6">No hay información sobre esto :(</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">gaussian</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">inverse_gaussian</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">jittered_grid</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">triangle</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">uniform</td></tr>
+
+</table></br></br></br><hr></br></br></br>
+<center><h1 id="query">Palabras claves</h1></center></br>
+<ol style="font-family: arial;">
+	<li>Array: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Features: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Filename: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Integer: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Minecraft_filter: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Object: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Offset: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>String: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+</ol>

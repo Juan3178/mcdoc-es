@@ -1,0 +1,278 @@
+<center><h1>Documentación de: "Manifest" (manifiesto)</h1><h2>V1.21.44</h2></center>
+</br>
+
+Los archivos <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b> son los archivos más importantes de un paquete de recursos, skin packs, complementos, mundos de plantillas, etc; ya que son los responsables para la identificación de los packs, además de proporcionar la información necesaria de estos mismos...
+</br></br>
+
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 200%;">
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#json_schema">Esquema JSON</a></th></tr>
+
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#whats_a_manifest_file">¿Que es un archivo manifest?</a></th></tr>
+
+	<tr><th style="border-style: solid; border-width: 3;" align="left"><a href="#schema">Esquema</a></th></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#format_version">Formato de versión</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#header">Encabezado</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#modules">Módulos</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#dependencies">Dependencias</a></th></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#metadata">Metadatos</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#subpacks">Subpaquetes</a></th></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#capabilities">Capacidades</a></td></tr>
+
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#query">Palabras claves</a></th></tr>
+</table>
+</br></br>
+
+<p style="font-family: arial;">Toda esta información lo puedes encontrar de manera oficial aqui: <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable">(disponible solo en ingles)</a></p>
+</br></br><hr></br></br>
+
+<center>
+	<h4 id="json_schema">Esquema JSON</h4>
+	<textarea readonly="true" cols="100" rows="18">
+{
+  "format_version": 2,
+  "header": {
+    "name": "pack.name",
+    "description": "pack.description",
+    "uuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "version": [ 1, 0, 0 ],
+    "min_engine_version": [ 1, 21, 40 ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "version": [ 1, 0, 0 ]
+    }
+  ]
+}
+	</textarea>
+	<h4 style="color: #888; font-size: 55%; font-family: arial;">Requerimiento minimo para un paquete de texturas</h4>
+</center>
+</br></br>
+
+<center><h2 id="whats_a_manifest_file">¿Que es un archivo manifest?</h2></center>
+
+"Los archivos manifest contienen toda la información básica sobre los paquetes que Minecraft necesita identificarlos. Contienen todos los componentes de los manifiestos, sus propiedades individuales y que significan." <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable" style="font-size: 70%;"><i>[1]</i></a> <a href="https://mojang.github.io/bedrock-samples/Addons.html#manifest.json" style="font-size: 70%;"><i>[2]</i></a>
+</br></br>
+
+<div style="background-color: #efd9fd; padding: 3%; border-radius: 60px; font-family: arial;">
+<h2 style="font-family: serif; color: #3b2e59;">♜ Nota:</h2>Para aprender más sobre como empezar escribiendo archivos <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b> en Minecraft: Bedrock Edition, puedes ver el tutorial <a style="color: purple;" href="https://learn.microsoft.com/en-us/minecraft/creator/documents/resourcepack?view=minecraft-bedrock-stable"><b>Introducción a los Paquetes de recursos</b></a>.
+</div>
+</br></br><hr></br></br>
+
+<h3 id="schema">Esquema</h3>
+Los archivos <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b> estan compuestos por las siguientes partes:
+<ul style="font-family: arial;">
+</br>
+	<li><b>format_version</b>: La versión de sintaxis usada en el archivo manifiesto. Puede ser <b style="font-family: arial;"><i>1</i></b> para skin packs o <b style="font-family: arial;"><i>2</i></b> para paquetes de recursos, comportamientos, mundos de plantillas, etc.</li>
+</br>
+	<li><b>header</b>: Sección que contiene información sobre el nombre del paquete, descripción y otras características que son publicadas.</li>
+</br>
+	<li><b>modules</b>: Sección que contiene información sobre el tipo de contenido que se está incorporando.</li>
+</br>
+	<li><b>dependencies</b>: Sección que contiene definiciones de cualquier otro paquete que sea necesario para que este archivo <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b> funcione.</li>
+</br>
+	<li><b>metadata</b>: Sección que contiene los metadatos sobre el archivo, como autores e información de licencia.</li>
+</br>
+	<li><b>subpacks</b>: Sección que contiene subpaquetes que permite pequeños cambios en alguna función del paquete principal.</li>
+</br>
+	<li><b>capabilities</b>: Sección que contiene características opcionales que se pueden habilitar en Minecraft.</li>
+</br>
+</ul></br></br>
+
+<table align="center" border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 200%;">
+	<tr><th style="border-style: solid; border-width: 3; padding: 0 75;">Nombre</th><th style="border-style: solid; border-width: 3; padding: 0 49;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">format_version</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>INTEGER</b></a></td><td align="center" rowspan="3">✅</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">header</td><td style="border-style: solid; border-width: 3;" align="center" rowspan="5"><a href="#" style="font-family: monospace;"><b>OBJECT</b></a></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">modules</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">dependencies</td><td style="border-style: solid; border-width: 3;" align="center" rowspan="4">❌</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">metadata</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">subpacks</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">capabilities</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>ARRAY</b></a></td></tr>
+</table>
+</br></br><hr></br></br>
+
+<h3 id="format_version">Formato de versión</h3>
+El formato de versión determina de que tratará el paquete de manifiesto. Si el formato de manifiesto es <b style="font-family: arial;"><i>1</i></b>, la versión es solamente utilizada en skin packs; si el formato de manifiesto es <b style="font-family: arial;"><i>2</i></b>, la versión es utilizada en paquetes de recursos, complementos, mundos de plantillas, etc.
+</br></br><hr></br></br>
+
+<h3 id="header">Encabezado <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable#header">#</a></h3>
+El encabezado proporcia información básica de los paquetes, toda esa información basica es:
+
+<ul style="font-family: arial;">
+</br>
+	<li><b>name</b>: Este es el nombre del paquete que se mostrará en Minecraft. Esto es requerido obligatoriamente.</li>
+</br>
+	<li><b>description</b>: Esta es una descripción corta del paquete. se mostrará en el juego abajo del nombre del paquete. recomendamos que tenga 1 o 2 lineas.</li>
+</br>
+	<li><b>uuid</b>: Este es un tipo especial de identificación que identifica únicamente este paquete de los demás paquetes. Los UUIDs ( <b>U</b>niversal <b>U</b>nique <b>ID</b>entifier) son escritos en el formato <i style="font-family: monospace; font-size: 115%; border: 3px solid #aaa; background-color: #ddd;">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</i> (8 - 4 - 4 - 4 - 12), cada x es un valor hexadecimal (0 - 9 o a - f). Recomendamos usar un servicio online que genera esto.</li>
+</br>
+	<li><b>version</b>: Esta es la versión de tu paquete en el formato [majorVersion, minorVersion, revision]. El número de la versión es usada cuando importas un paquete que ha sido importado anteriormente. El nuevo paquete remplazará el antiguo si la versión es superior, e ignorara si es el mismo o menor.</li>
+</br>
+	<li><b>min_engine_version</b>: Esta es la versión minima del juego que este paquete fue escrito. Esto es un requerimiento para paquetes de recursos y comportamientos. Esto ayuda al juego identicar compatilidades anteriores necesarias para tu paquete. deberías siempre  usar la versión actual disponible cuando creas paquetes.</li>
+</br>
+	<li><b>allow_random_seed</b>: Esta opción generará una semilla aleatoria cada vez una plantilla es cargada y permite a los jugadores cambiar la semilla antes de crear un mundo nuevo. (solo para manifiestos de tipo "world_template")</li>
+</br>
+	<li><b>base_game_version</b>: Esta es la versión del juego base de tu mundo de plantilla requerido, especificado como [majorVersion, minorVersion, revision]. Usamos esto para determinar que versión del juego base aplica los paquetes de recursos y comportamientos cuando tu contenido es usado. (solo para manifiestos de tipo "world_template")</li>
+</br>
+	<li><b>lock_template_options</b>: Esta opción es requerido para algun mundo de plantillas. Esto bloqueará al jugador de modificar las opciones del mundo. (solo para manifiestos de tipo "world_template")</li>
+</br>
+	<li><b>pack_scope</b>: para los paquetes de recursos, una <a href="#" style="font-family: monospace;"><b>STRING</b></a> opcional que especifica si este paquete de recursos se puede usar en todo el juego o en un mundo individual.</br>Los valores válidos son:
+	<ol></br>
+		<li><b>world</b>: Especifica que un paquete solo se puede agregar en el contexto de un mundo.</li></br>
+		<li><b>global</b>: Significa que un paquete solo se puede agregar en todo el juego</li></br>
+		<li><b>any</b>: indica que un paquete se puede aplicar en todo el juego o en un mundo específico</li></br>
+	</ol>
+Si no se especifica, se interpreta como <b>any</b>.</li>
+</ul>
+</br></br>
+
+<table align="center" border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3; padding: 0 75;">Nombre</th><th style="border-style: solid; border-width: 3; padding: 0 49;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th></tr>
+
+	<tr>
+		<td style="border-style: solid; border-width: 3;" align="center">name</td>
+		<td style="border-style: solid; border-width: 3;" align="center" rowspan="3"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td>
+		<td style="border-style: solid; border-width: 3;" align="center" rowspan="5">✅</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">description</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">uuid</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">version</td><td style="border-style: solid; border-width: 3;" align="center" rowspan="2"><a href="#" style="font-family: monospace;"><b>VEC3</b></a></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">min_engine_version</td>
+	</tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">allow_random_seed</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>BOOLEAN</b></a></td><td align="center" rowspan="3">✅</br>disponible solo para</br>manifiestos de tipo <b>world_template</b></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">base_game_version</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>VEC3</b></a></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">lock_template_options</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>BOOLEAN</b></a></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">pack_scope</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td><td style="border-style: solid; border-width: 3;" align="center">❌</td></tr>
+</table>
+</br></br><hr></br></br>
+
+<h3 id="modules">Módulos <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable#modules">#</a></h3>
+Los módulos permite que el paquete puedan identifcarse de que trata su contenido. (puede sufrir pequeños cambios a través del <a href="#format_version">formato de versión</a>)</br></br>
+
+Los módulos pueden tener hasta 2 valores distintos (solo en el paquete de comportamientos):</br></br>
+
+<center>
+	<textarea readonly="false" cols="100" rows="16">
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "axxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "version": [ 1, 0, 0 ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "bxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "entry": "scripts/main.js",
+      "version": [ 1, 0, 0 ]
+    }
+  ],
+	</textarea>
+	<h4 style="color: #888; font-size: 55%; font-family: arial; width: fit-content;">los módulos con 2 valores tienen 2 UUID distintos, como se muestra arriba. Solo es válido  si necesitas usar <b style="color: #666;">SCRIPTS</b> en tus complementos</h4>
+</center></br></br>
+
+Los datos de los módulos son:
+
+<ul style="font-family: arial;">
+</br>
+	<li><b>description</b>: Esta es otra descripción del paquete y no se mostrará en el juego.</li>
+</br>
+	<li><b>type</b>: Este es el tipo del módulo. Puede ser alguno de los siguientes (dependiendo del <a href="#format_version">formato de versión</a>):</li>
+</br>
+</ul>
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 140%;">
+	<tr><th style="border-style: solid; border-width: 3;">Nombre</th><th style="border-style: solid; border-width: 3;"><a href="#format_version">Formato de versión</a></th></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">resources</td><td align="center" style="border-style: solid; border-width: 3; font-family: arial;" rowspan="7">2</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">data</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">script</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">client_data</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">interface</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">world_template</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">world</td></tr>
+
+	<tr><td align="center" style="border-style: solid; border-width: 3;">skin_pack</td><td align="center" style="border-style: solid; border-width: 3; font-family: arial;">1</tr>
+</table>
+
+<center><h4 style="color: #888; font-size: 55%; font-family: arial; width: fit-content;">Toda la información fue encontrada en <a style="color: #333;" href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable#modules">Addons Documentation - manifest.json</a> y en <a style="color: #333;" href="https://mojang.github.io/bedrock-samples/Addons.html#manifest.json">bedrock-samples/documentation/addons.html</a></h4></center>
+
+
+<ul style="font-family: arial;">
+</br>
+	<li><b>uuid</b>: Este es un identificador único para el módulo en el mismo formato que el UUID del paquete en el <a href="#header">encabezado</a>. Este debería de ser diferente del UUID del paquete y diferente por cada módulo.</li>
+</br>
+	<li><b>version</b>: Esta es la versión del módulo en el mismo formato que la versión del paquete en el <a href="#header">encabezado</a>. Este puede ser usado para identificar cambios en tu paquete.</li>
+</br>
+	<li><b>language</b>: Disponible solamente si <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">type</b> es <b style="font-family:monospace; border: 3px solid #aaa; background-color: #ddd;">script</b>. Esto indica el lenguaje en que los scripts son escritos en el paquete. El único valor soportado es <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">javascript</b>.</li>
+</br>
+	<li><b>entry</b>: Disponible solamente si <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">type</b> es <b style="font-family:monospace; border: 3px solid #aaa; background-color: #ddd;">script</b>. define en donde se encontrará el archivo script principal. Recomendamos que esté en la subcarpeta de comportamientos <b style="border: 2px solid #999;font-family:monospace;">scripts</b></li>
+</br>
+</ul></br></br>
+
+
+<table align="center" border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3; padding: 0 75;">Nombre</th><th style="border-style: solid; border-width: 3; padding: 0 49;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th></tr>
+
+	<tr>
+		<td style="border-style: solid; border-width: 3;" align="center">description</td>
+		<td style="border-style: solid; border-width: 3;" align="center" rowspan="3"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td><td style="border-style: solid; border-width: 3;" align="center">❌</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">type</td><td style="border-style: solid; border-width: 3;" align="center" rowspan="3">✅</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">uuid</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">version</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>VEC3</b></a> / <a href="https://semver.org/lang/es/" style="font-family: monospace;"><b>SemVer STRING</b></a></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">language</td><td style="border-style: solid; border-width: 3;" align="center" rowspan="2"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td><td align="center" rowspan="2">✅</br>disponible solo para</br>manifiestos de tipo <b>script</b></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">entry</td></tr>
+
+</table></br></br>
+
+<div style="background-color: #ebf4fd; padding: 3%; border-radius: 60px; font-family: arial;">
+<h2 style="font-family: serif; color: #115ea2;">⁠⁠✪ ⁠Importante:</h2>Para enviar cualquier contenido al mercado, el valor de la versión <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">a</b> deberá establecerse en un valor mayor que 0, por ejemplo, <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">"version": [1, 0, 0]</b> o <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">"version": "1.0.0"</b></a>.
+</div>
+
+</br></br><hr></br></br>
+
+<h3 id="dependencies">Dependencias <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable#dependencies">#</a></h3>
+Las dependencias permiten la conexión de varios paquetes (sin importar que esten en los paquetes de recursos o comportamientos) y también a scripts del juego.</br>
+A continuación, verás el contenido de las dependencias:
+
+<ul style="font-family: arial;">
+</br>
+	<li><b>uuid</b>: este es el identificador único del paquete del que depende este paquete. Debe ser exactamente el mismo UUID que el paquete ha definido en la sección de <a href="#header">encabezado</a> de su archivo de manifiesto.</li>
+</br>
+	<li><b>module_name</b>: para las dependencias de los módulos de scripting integrados, contiene el nombre del módulo. (por ejemplo, <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">@minecraft/server</b> o <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">@minecraft/server-ui</b>)</li>
+</br>
+	<li><b>version</b>: Esta es la versión específica del paquete del que depende tu paquete. Debe coincidir con la versión que el otro paquete tiene en su archivo de manifiesto.</li>
+</br>
+</ul>

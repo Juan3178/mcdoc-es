@@ -1,0 +1,78 @@
+<center><h1>Documentación de: "Loading messages" (Cargando mensajes)</h1><h2>V1.21.44</h2></center>
+</br>
+Agrega mensajes de tips e información del juego mientras esta cargando un mundo, algunos textos te pueden ayudar en descubrir algo dentro del juego y otros alguna información...
+
+</br></br>
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 200%;">
+
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#whats_a_loading_messages">¿Que es loading messages?</a></th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="left"><a href="#schema">Esquema</a></td></tr>
+
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#info_parameters">Información de los pámetros</a></th></tr>
+</table></br></br>
+
+<center><h2 id="whats_a_loading_messages">¿Que es loading messages?</h2></center>
+Los Loading Messages agregan mensajes a la pantalla de carga mientras esperas a que termine de cargar tu mundo, se encuentran en la carpeta del paquete de recursos 'loading_messages.json'.
+</br></br>
+<center>
+<textarea readonly="true" cols="100" rows="16">
+{
+  "beginner_loading_messages": [
+    "beginnerTips.1",
+    "beginnerTips.2",
+    "beginnerTips.3",
+    "beginnerTips.4",
+    "beginnerTips.5",
+    "beginnerTips.6",
+    "beginnerTips.7",
+    "beginnerTips.8",
+    "beginnerTips.9",
+    "beginnerTips.10",
+    "beginnerTips.11",
+    "beginnerTips.12"
+  ]
+}
+</textarea>
+	<h4 style="color: #888; font-size: 55%; font-family: arial;">Un corto ejemplo de como funciona este archivo.</h4>
+</center></br></br><hr></br></br>
+
+<center><h3 id="schema">Esquema</h3></center>
+<ul>
+	<li>Para que no aparezca ningun texto en la pantalla, solamente hay que dejar las <i style="font-family:monospace;">{ }</i> en el archivo sin agregarle absolutamente nada.</li></br>
+	<li>Si quieres agregarle un nuevo texto a la pantalla de carga debes de agregarlo en alguno de los siguientes parámetros:</li></br>
+	<ol>
+		<li><b style="border: 2px solid #999;font-family:monospace;">beginner_loading_messages</b></li></br>
+		<li><b style="border: 2px solid #999;font-family:monospace;">mid_game_loading_messages</b></li></br>
+		<li><b style="border: 2px solid #999;font-family:monospace;">late_game_loading_messages</b></li></br>
+		<li><b style="border: 2px solid #999;font-family:monospace;">editor_loading_messages</b></li></br>
+		<li><b style="border: 2px solid #999;font-family:monospace;">realms_loading_messages</b></li></br>
+		<li><b style="border: 2px solid #999;font-family:monospace;">addons_loading_messages</b></li>
+	</ol>
+</ul>
+</br></br><hr></br></br>
+
+<center><h2 id="info_parameters">Información de los pámetros</h2></center></br></br>
+
+<table border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3;">Nombre</th><th style="border-style: solid; border-width: 3;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th><th style="border-style: solid; border-width: 3;">Descripción</th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">beginner_loading_messages</td><td style="border-style: solid; border-width: 3;" rowspan="6" align="center"><a style="font-family: monospace;padding:0 33;" href="#"><b>ARRAY</b></a></td><td align="center" rowspan="6">❌</td>
+<td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben aprobarse para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">mid_game_loading_messages</td><td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben fallar para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">late_game_loading_messages</td><td style="border-style: solid; border-width: 3;">Evalúa pruebas en el grupo, una o más deben aprobarse para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">editor_loading_messages</td><td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben aprobarse para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">realms_loading_messages</td><td style="border-style: solid; border-width: 3;">Evalúa todas las pruebas del grupo, todas deben fallar para que el grupo apruebe.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">addons_loading_messages</td><td style="border-style: solid; border-width: 3;">Evalúa pruebas en el grupo, una o más deben aprobarse para que el grupo apruebe.</td></tr>
+</table>
+</br></br></br><hr></br></br></br>
+<center><h1 id="query">Palabras claves</h1></center></br>
+<ol style="font-family: arial;">
+	<li>Array: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+</ol>

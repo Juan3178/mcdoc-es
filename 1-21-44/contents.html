@@ -1,0 +1,74 @@
+<center><h1>Documentación de: "Contents" (contenidos)</h1><h2>V1.21.44</h2></center>
+</br>
+Este archivo crea un registro de toda la información de un paquete de texturas o un add-on, eso incluye imagenes, archivos, audio, etc...
+</br></br>
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 200%;">
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#whats_a_contents_file">¿Que es un archivo contents?</a></th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="left"><a href="#why_need_to_be">¿Para que funciona?</a></td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="left"><a href="#how_create_it">¿Cómo crearlo?</a></td></tr>
+
+</table></br></br>
+<center><h2 id="whats_a_contents_file">¿Que es un archivo contents?</h2></center>
+Los archivos "contents.json" almacenan el contenido agregado a una textura, en un datapack o en un addon. Una vez que este archivo se ha agregado todo el contenido, este mismo no permitira mas contenido.
+</br></br>
+
+<center>
+<textarea readonly="true" cols="100" rows="18">
+{
+   "content" : [
+      {
+         "path" : "bug_pack_icon.png"
+      },
+      {
+         "path" : "contents.json"
+      },
+      {
+         "path" : "manifest.json"
+      },
+      {
+         "path" : "pack_icon.png"
+      }
+   ],
+   "version" : 1
+}
+</textarea>
+<h4 style="color: #888; font-size: 55%; font-family: arial;">El archivo "contents.json" esta buscando los archivos mencionados para ejecutarse.</h4>
+</center>
+</br></br>
+
+<center><h2 id="why_need_to_be">¿Para que funciona?</h2></center>
+Este archivo permite detectar los archivos que se mostraran en el juego, cualquier archivo no mencionado en este mismo, simplemente el juego lo va a ignorar, a continuación verás sus ventajas y desventajas:</br></br>
+<h3>Ventajas:</h3>
+<ul>
+	<li>Te permite mantener oculto archivos que quieras usar después.</li>
+	<li>Es facil de comprender como funciona.</li>
+	<li>te crea "seguridad" si alguien quiere agregarle contenido nuevo sin permiso del creador.</li>
+	<li>No es necesario <a href="#how_create_it">escribir todo manualmente</a>, el juego lo hace por ti.</li>
+</ul></br>
+<h3>Desventajas:</h3>
+<ul>
+	<li>Este archivo no detecta los archivos que esten dentro de la carpeta "subpacks".</li>
+	<li>El archivo pierde toda esa "seguridad" (antes mencionado) simplemente agregando el nuevo contenido manualmente o eliminando el archivo.</li>
+	<li>Cada vez que agregas un archivo nuevo a tu textura o complemento, tendrás que crear un nuevo archivo "contents.json" (a excepción de que lo agregues al archivo manualmente.)</li>
+</ul>
+</br></br>
+
+<center><h2 id="how_create_it">¿Cómo crearlo?</h2></center>
+simplemente haz los siguientes pasos:</br></br>
+<ol>
+	<li>crea el archivo "contents.json" (va junto con el archivo "manifest.json").</li>
+	<li>Dentro del archivo escribes lo siguiente:</li>
+	<center>
+		<textarea readonly="true" cols="100" rows="6">
+{
+   "content" : [
+   ]
+}
+		</textarea>
+	</center>
+	<li>simplemente entras al juego y cargas tu textura o complemento.</li>
+</ol></br></br>
+
+Y listo, ya tienes el archivo "contents.json" :D
