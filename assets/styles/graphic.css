@@ -39,6 +39,9 @@
 	z-index: 3179;
 	width: 75%;
 	height: 33%;
+	max-width: 75%;
+	max-height: 33%;
+	overflow-y: auto;
 	background-color: transparent;
 }
 .text_craft {
