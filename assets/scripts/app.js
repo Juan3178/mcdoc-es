@@ -43,7 +43,7 @@ select.addEventListener('change', () => {
 				default:
 					show_info_mc_version.innerHTML = `<b style="color: red;">Por favor, seleccione una opción.</b>`;
 				case 1:
-					fetch('https://juan3178.github.io/mcdoc-es/storage.html').then(response => response.text()).then(inHTML => {show_info_mc_version.innerHTML = inHTML;});
+					fetch('https://juan3178.github.io/mcdoc-es/1-21-44/storage.html').then(response => response.text()).then(inHTML => {show_info_mc_version.innerHTML = inHTML;});
 					break;
 
 				case 2:
