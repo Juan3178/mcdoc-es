@@ -28,6 +28,10 @@
 	background-color: red;
 	animation: change-bg-color 10s infinite;
 }
+.middle_url {
+	display: inline-block;
+	vertical-align: middle;
+}
 .pad_48px {
 	padding: 48px;
 }
