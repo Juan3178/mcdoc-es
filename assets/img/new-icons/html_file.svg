@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg
+	version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	x="0%" y="0%"
+	width="100%" height="100%"
+	viewBox="0 0 64.0 64.0"
+	enable-background="new 0 0 64.0 64.0"
+	xml:space="preserve">
+<defs>
+	<style type="text/css">
+		@font-face {
+			font-family: 'roboto';
+		}
+	</style>
+</defs>
+	<path
+		fill="#9900FF"
+		stroke="#9900FF"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.08745"
+		stroke-linejoin="miter"
+		stroke-linecap="square"
+		d="M4.88,4.88L59.44,4.88L59.44,59.44L4.88,59.44z"/>
+	<path
+		fill="#6C00B3"
+		stroke="#6C00B3"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.08745"
+		stroke-linejoin="miter"
+		stroke-linecap="square"
+		d="M59.40,23.14L37.67,4.91L59.40,4.91L59.40,23.14z"/> 
+
+	<text 
+		font-size="7.873207"
+		font-family="roboto"
+		fill="#DCA5FF"
+		stroke-width="0"
+		fill-opacity="1.000"
+		text-anchor="start"
+		font-weight="bold"
+   		transform="rotate(-0.0 20.177246 24.082352) scale(0.9174213 1.0)" >
+
+		<tspan x="17.284435" y="27.096851">Aa</tspan>
+	</text>
+	<path
+		fill="#C873FF"
+		stroke="#C873FF"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.024"
+		stroke-linejoin="miter"
+		stroke-linecap="round"
+		d="M26.07,22.11L47.02,22.06"/>
+	<path
+		fill="#C873FF"
+		stroke="#C873FF"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.024"
+		stroke-linejoin="miter"
+		stroke-linecap="round"
+		d="M26.07,25.23L47.02,25.18"/>
+	<path
+		fill="#C873FF"
+		stroke="#C873FF"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.024"
+		stroke-linejoin="miter"
+		stroke-linecap="round"
+		d="M26.07,28.04L47.02,27.99"/>
+	<path
+		fill="#C873FF"
+		stroke="#C873FF"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.024"
+		stroke-linejoin="miter"
+		stroke-linecap="round"
+		d="M15.86,30.81L47.02,30.76"/>
+	<path
+		fill="#C873FF"
+		stroke="#C873FF"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.024"
+		stroke-linejoin="miter"
+		stroke-linecap="round"
+		d="M15.86,33.58L47.02,33.52"/>
+	<path
+		fill="#C873FF"
+		stroke="#C873FF"
+		fill-opacity="1.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="1.024"
+		stroke-linejoin="miter"
+		stroke-linecap="round"
+		d="M15.86,36.28L47.02,36.23"/> 
+
+	<text 
+		font-size="12.056832"
+		font-family="roboto"
+		fill="#EBCCFF"
+		stroke-width="0"
+		fill-opacity="1.000"
+		text-anchor="start"
+		font-weight="bold"
+   		transform="rotate(-0.0 32.0 45.0) scale(0.87926394 1.0)" >
+
+		<tspan x="20.079077" y="49.6155">HTML</tspan>
+	</text>
+</svg>
