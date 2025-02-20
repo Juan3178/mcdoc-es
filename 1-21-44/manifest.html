@@ -269,10 +269,207 @@ A continuación, verás el contenido de las dependencias:
 
 <ul style="font-family: arial;">
 </br>
-	<li><b>uuid</b>: este es el identificador único del paquete del que depende este paquete. Debe ser exactamente el mismo UUID que el paquete ha definido en la sección de <a href="#header">encabezado</a> de su archivo de manifiesto.</li>
+	<li><b>uuid</b>: Este es el identificador único del paquete del que depende este paquete. Debe ser exactamente el mismo UUID que el paquete ha definido en la sección de <a href="#header">encabezado</a> de su archivo de manifiesto.</li>
 </br>
-	<li><b>module_name</b>: para las dependencias de los módulos de scripting integrados, contiene el nombre del módulo. (por ejemplo, <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">@minecraft/server</b> o <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">@minecraft/server-ui</b>)</li>
+	<li><b>module_name</b>: Para las dependencias de los módulos de scripting integrados, contiene el nombre del módulo. (por ejemplo, <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">@minecraft/server</b> o <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">@minecraft/server-ui</b>)</li>
 </br>
 	<li><b>version</b>: Esta es la versión específica del paquete del que depende tu paquete. Debe coincidir con la versión que el otro paquete tiene en su archivo de manifiesto.</li>
 </br>
 </ul>
+</br></br>
+
+<table align="center" border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3; padding: 0 75;">Nombre</th><th style="border-style: solid; border-width: 3; padding: 0 49;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th></tr>
+
+	<tr>
+		<td style="border-style: solid; border-width: 3;" align="center">uuid</td>
+		<td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td><td style="border-style: solid; border-width: 3;" align="center">✅</br>Solo para buscar</br>otros paquetes</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">module_name</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td><td style="border-style: solid; border-width: 3;" align="center">✅</br>Solo para buscar</br>el tipo de script</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">version</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>VEC3</b></a> / <a href="https://semver.org/lang/es/" style="font-family: monospace;"><b>SemVer STRING</b></a></td><td style="border-style: solid; border-width: 3;" align="center">✅</td></tr>
+
+</table></br></br>
+
+<h2>Dependencias (uso común)</h2>
+<center>
+<textarea readonly="false" cols="100" rows="7">
+  "dependencies": [
+    {
+      "uuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "version": [ 1, 0, 0 ]
+    }
+  ]
+</textarea>
+	<h4 style="color: #888; font-size: 55%; font-family: arial; width: fit-content;">Generalmente las dependencias son usadas en complementos (Add-ons), ¡pero también puedes agregar más dependencias!</h4>
+</center></br></br>
+<h2>Dependencias (uso en scripts)</h2>
+<center>
+<textarea readonly="false" cols="100" rows="18">
+  "dependencies": [
+    {
+      "uuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "version": [ 1, 0, 0 ]
+    },
+    {
+      "module_name": "@minecraft/common",
+      "version": "1.2.0"
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.16.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "1.3.0"
+    }
+  ]
+</textarea>
+	<h4 style="color: #888; font-size: 55%; font-family: arial; width: fit-content;">La dependencias que tienen scripts (en los paquetes de comportamientos ) es que no usan el "uuid", además que la versión está en formato <a style="color: #333;" href="https://semver.org/lang/es/">SemVer STRING</a>, puede <a style="color: #333;" href="#">consultar aqui</a> que versión tiene cada <b style="color: #666;">module_name</b></h4>
+</center>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="metadata">Metadatos <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable#metadata">#</a></h3>
+Los metadatos permite que un addon, un paquete de texturas o comportamientos e incluso mundos de plantillas, proporcionen más información sobre el creador.</br>
+A continuación, verás el contenido de los metadatos:
+
+<ul style="font-family: arial;">
+</br>
+	<li><b>authors</b>: Nombre(s) del/de los autor(es) del paquete.</li>
+</br>
+	<li><b>license</b>: La licencia del paquete (puedes colocar una URL de la licencia o agregarlo al paquete de recursos.)</li>
+</br>
+	<li><b>generated_with</b>: Este es usado para identificar las herramientas usadas para generar un archivo <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b>. Los nombres de las herramientas debe ser igual a [<b>a-zA-Z0-9_-</b>] y 32 caracteres máximo. Los números de versión de la herramienta son un <a href="https://semver.org/lang/es/">SemVer STRING</a>, por cada versión que modifica el archivo <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b>.</li>
+</br>
+	<li><b>product_type</b>: This optional string is used to identify a targeted context for this pack. The only supported value is "addon", indicating this pack is intended to be added to players' worlds. Setting product_type to "addon" should not change how the pack functions in-game.</li>
+</br>
+	<li><b>url</b>: El sitio web de tu paquete.</li>
+</br>
+</ul>
+
+<h2>Ejemplo de como usar metadatos:</h2>
+<center>
+<textarea readonly="false" cols="100" rows="8">
+  "metadata": {
+    "authors": [ "exampleAuthor" ],
+    "license": "MIT",
+    "url": "https://www.yourwebaddon.com",
+    "generated_with": {
+      "example_tool": [ "1.0.0", "1.1.0" ]
+    }
+  }
+</textarea></center></br></br></br></br>
+
+
+<table align="center" border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3; padding: 0 75;">Nombre</th><th style="border-style: solid; border-width: 3; padding: 0 49;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th></tr>
+
+	<tr>
+		<td style="border-style: solid; border-width: 3;" align="center">authors</td><td style="border-style: solid; border-width: 3;" align="center"><a href="#" style="font-family: monospace;"><b>ARRAY</b></a></td><td style="border-style: solid; border-width: 3;" align="center">✅</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">license</td><td style="border-style: solid; border-width: 3;" rowspan="3" align="center"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td><td style="border-style: solid; border-width: 3;" rowspan="4" align="center">❌</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">url</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">product_type</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">generated_with</td><td style="border-style: solid; border-width: 3;" rowspan="4" align="center"><a href="#" style="font-family: monospace;"><b>OBJECT</b></a></td></tr>
+</table>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="subpacks">Subpaquetes</h3>
+Los subpaquetes permiten modificar el contenido interno del paquete principal, como el cambio de alguna textura o animación, la calidad de las texturas e incluso usarlo para la compatibilidad de tu complemento en diferentes versiones del juego. Tambien puedes usar los subpaquetes en los paquetes de recursos y comportamientos.</br>
+A continuación verás el contenido de los subpaquetes:
+<ul style="font-family: arial;">
+</br>
+	<li><b>name</b>: Es el nombre del subpaquete. Puedes usar el <b style="border: 2px solid #999;font-family:monospace;">\n</b> para crear una descripción del subpaquete.</li>
+</br>
+	<li><b>folder_name</b>: Es el nombre de la carpeta que estará guardado en la subcarpeta <b style="border: 2px solid #999;font-family:monospace;">subpacks</b>, este parámetro funciona aunque no exista la carpeta.</li>
+</br>
+	<li><b>memory_tier</b>: Esto define que tanta memoria puede consumir este paquete, el valor minimo es 0, ya que no requiere mucho procesamiento, y el valor máximo depende de cada dispositivo. (los dispositivos de gama baja pueden soportar un valor máximo de aproximado de 8 - 10)</li>
+</br>
+</ul>
+
+<h2>Ejemplo de como usar subpaquetes:</h2>
+<center>
+<textarea readonly="false" cols="100" rows="26">
+  "subpacks": [
+    {
+      "name": "RTX texture \nlas texturas, las particulas, y los icons del addon tienen la más alta definición y detalle.",
+      "folder_name": "RTX_craft",
+      "memory_tier": 9
+    },
+    {
+      "name": "Realism texture \nLas texturas del addon son más realistas.",
+      "folder_name": "beautiful_pack",
+      "memory_tier": 4
+    },
+    {
+      "name": "Beautiful texture \nAgrega texturas bonitas al addon",
+      "folder_name": "beautiful_pack",
+      "memory_tier": 1
+    },
+    {
+      "name": "Normal mode",
+      "folder_name": "default",
+      "memory_tier": 0
+    }
+  ]
+</textarea></center></br></br>
+
+
+<table align="center" border="1" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3; padding: 0 75;">Nombre</th><th style="border-style: solid; border-width: 3; padding: 0 49;">Tipo</th><th style="border-style: solid; border-width: 3;">¿Requerido?</th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">name</td><td style="border-style: solid; border-width: 3;" rowspan="2" align="center"><a href="#" style="font-family: monospace;"><b>STRING</b></a></td><td style="border-style: solid; border-width: 3;" rowspan="3" align="center">✅</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">folder_name</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">memory_tier</td><td style="border-style: solid; border-width: 3;" rowspan="2" align="center"><a href="#" style="font-family: monospace;"><b>INTEGER</b></a></td></tr>
+
+</table>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="capabilities">Capacidades <a href="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonmanifest?view=minecraft-bedrock-stable#capabilities">#</a></h3>
+Estas son las diferentes características que utiliza el paquete y que no están necesariamente habilitadas de forma predeterminada. Las capacidades son un <a href="#" style="font-family: monospace;"><b>ARRAY</b></a> opcional y puedes agregar más de un capacidad.</br>
+Los siguientes valores son el tipo de capacidad:</br></br>
+
+<table align="center" border="1" style="border-style: solid; width: 40vh; border-collapse: collapse; border-width: 3;">
+	<tr><th style="border-style: solid; border-width: 3;">Nombre</th><th style="border-style: solid; border-width: 3;">Descripción</th></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">chemistry</td><td style="border-style: solid; border-width: 3;">Permite que el paquete agregue, cambie o reemplace el comportamiento 'Chemistry'</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">editorExtension</td><td style="border-style: solid; border-width: 3;">Indica que este paquete contiene extensiones para el Minecraft Editor</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">experimental_custom_ui</td><td style="border-style: solid; border-width: 3;">Permite que los archivos HTML del paquete se utilicen para una interfaz de usuario (UI) personalizada y que los scripts del paquete llamen y manipulen la interfaz de usuario personalizada.</td></tr>
+
+	<tr><td style="border-style: solid; border-width: 3;" align="center">raytraced</td><td style="border-style: solid; border-width: 3;">El paquete usa funcionalidades del trazado de rayos y usar shaders personalizados.</td></tr>
+</table>
+</br></br></br><hr></br></br></br>
+<center><h1 id="query">Palabras claves</h1></center></br>
+<ol style="font-family: arial;">
+	<li>Array: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Boolean: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Integer: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Object: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>SemVer STRING: <a href="https://semver.org/lang/es/">Consultar aqui 🔎</a></li>
+</br>
+	<li>String: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Vec3: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+</ol>
+</br></br></br>
