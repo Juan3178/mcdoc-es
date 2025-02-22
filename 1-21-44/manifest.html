@@ -25,6 +25,8 @@ Los archivos <b style="border: 2px solid #999;font-family:monospace;">manifest.j
 
 	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#capabilities">Capacidades</a></td></tr>
 
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#settings">Ajustes</a></td></tr>
+
 	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#query">Palabras claves</a></th></tr>
 </table>
 </br></br>
@@ -344,7 +346,7 @@ A continuación, verás el contenido de los metadatos:
 </br>
 	<li><b>generated_with</b>: Este es usado para identificar las herramientas usadas para generar un archivo <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b>. Los nombres de las herramientas debe ser igual a [<b>a-zA-Z0-9_-</b>] y 32 caracteres máximo. Los números de versión de la herramienta son un <a href="https://semver.org/lang/es/">SemVer STRING</a>, por cada versión que modifica el archivo <b style="border: 2px solid #999;font-family:monospace;">manifest.json</b>.</li>
 </br>
-	<li><b>product_type</b>: This optional string is used to identify a targeted context for this pack. The only supported value is "addon", indicating this pack is intended to be added to players' worlds. Setting product_type to "addon" should not change how the pack functions in-game.</li>
+	<li><b>product_type</b>: Esta <a href="#" style="font-family: monospace;"><b>STRING</b></a> opcional se utiliza para identificar un contexto específico para este paquete. El único valor admitido es <i><b>addon</b></i>, que indica que este paquete está destinado a agregarse a los mundos de los jugadores. Establecer <b>product_type</b> en <i><b>addon</b></i> no debería cambiar el funcionamiento del paquete en el juego.</li>
 </br>
 	<li><b>url</b>: El sitio web de tu paquete.</li>
 </br>
@@ -454,6 +456,70 @@ Los siguientes valores son el tipo de capacidad:</br></br>
 
 	<tr><td style="border-style: solid; border-width: 3;" align="center">raytraced</td><td style="border-style: solid; border-width: 3;">El paquete usa funcionalidades del trazado de rayos y usar shaders personalizados.</td></tr>
 </table>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="settings">Ajustes</h3>
+No hay mucha información sobre este parámetro, ya que ni la documentación oficial de Minecraft Bedrock lo menciona.</br></br><i>"Me emocione al encontrar esto, ya que intentaba instalar imágenes en este apartado de ajustes, pero al final estás funciones no tienen utilidad." - Juan3178 (02/21/25) - 8:38 PM (GMT-05:00)</i></br></br>Estas funciones, aunque no estan usualmente usados, sus parámetros si son requeridos:
+
+<ul style="font-family: arial;">
+</br>
+	<li><b>type</b>: Es el tipo de función. Estos son todos los tipos de funciones:</br></br><b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">label</b>: Es usado para mostar texto.</br></br><b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">toggle</b>: Es para habilitar o deshabilitar una opción.</br></br><b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">input</b>: te permite escribir texto.</br></br><b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">slider</b>:crea una barra horizontal y puedes hacer la cantidad de opciones que quieras.</br></br><b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">step_slider</b>: Cumple casi la misma función que el <b>slider</b>, la diferencia es que debes de hacer cada opción.</br></br><b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">dropdown</b>Permite escoje alguna opción de varias que estan almacenadas en este parámetro.</li>
+</br>
+	<li><b>text</b>: Es el texto que se mostrará junto con la función que se ha seleccionado.</li>
+</br>
+	<li><b>name</b>: Es el nombre de la función.</li>
+</br>
+	<li><b>steps</b>: Es un <a href="#" style="font-family: monospace;"><b>ARRAY</b></a> donde tienes que hacer cada una de las opciones. y es usado en el <b>type</b> <i>"step_slider".</i></li>
+</br>
+	<li><b>min</b> & <b>max</b>: Es la cantidad minima y máxima de opciones que tiene el <b>type</b> <i>"slider".</i></li>
+</br>
+	<li><b>options</b>: Es un <a href="#" style="font-family: monospace;"><b>ARRAY</b></a> donde se almacenara cada opción en el <b>type</b> <i>"dropdown".</i></li>
+</br>
+</ul>
+
+<h2>Ejemplo de como usar settings:</h2>
+<center>
+<textarea readonly="false" cols="100" rows="26">
+  "settings": [
+    {
+      "type": "label",
+      "text": "Este esto aparecere en los ajustes de los paquetes."
+    },
+    {
+      "type": "toggle",
+      "name": "toggle_opt",
+      "text": "Activar opción."
+    },
+    {
+      "type": "input",
+      "name": "input_txt",
+      "text": "escribe el texto necesario :)"
+    },
+    {
+      "type": "slider",
+      "text": "elige la opcion",
+      "name": "slider_opt",
+      "min": 0,
+      "max": 7
+    },
+    {
+      "type": "step_slider",
+      "text": "elige la opcion",
+      "name": "step_slider_opt",
+      "steps": [ "texto 1", "texto 2", "texto 3" ]
+    },
+    {
+      "type": "dropdown",
+      "text": "escoje tu opcion :)",
+      "name": "dropdown_opt",
+      "options": [ "texto 1", "texto 2", "texto 3"]
+    }
+  ]
+</textarea></center>
+
 </br></br></br><hr></br></br></br>
 <center><h1 id="query">Palabras claves</h1></center></br>
 <ol style="font-family: arial;">
