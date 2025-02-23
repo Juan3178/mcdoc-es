@@ -1,0 +1,276 @@
+<center><h1>Documentación de: "Bloques (recursos)" (blocks)</h1><h2>V1.21.44</h2></center>
+</br>
+
+El archivo <b style="border: 2px solid #999;font-family:monospace;">blocks.json</b> permite editar el sonido, la textura, el nivel de brillo gamma y otros parámetros a los bloques del juego vanilla y también a los bloques personalizados de los addons. (este último el <b style="font-family:monospace;"><a href="https://juan3178.github.io/mcdoc-es/blocks_behaviors.html">blocks/custom_block.json</a></b> no debe de tener el parámetro <b>minecraft:material_instances</b> y debe ser un bloque que no tenga algun pixel de opacidad menor a 255)</br></br>
+
+
+<div style="background-color: #efd9fd; padding: 3%; border-radius: 60px; font-family: arial;">
+<h2 style="font-family: serif; color: #3b2e59;">♜ Nota:</h2>El parámetro <b style="color: #3b2e59;">minecraft:geometry</b> de <b style="font-family:monospace;"><a style="color: purple;" href="https://juan3178.github.io/mcdoc-es/blocks_behaviors.html">blocks/custom_block.json</a></b>, no se verá afectado si no existe el parámetro <b style="color: #3b2e59;">minecraft:material_instances</b>. </br>Pero recuerda que la textura del bloque <b style="color: red;">no debe</b> tener una opcidad menor a <b>255</b>.</div></br></br>
+
+
+<table border="1" align="center" style="border-style: solid; width: fit-content; border-collapse: collapse; border-width: 3; font-size: 200%;">
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#json_schema">Esquema JSON</a></th></tr>
+
+	<tr><th style="border-style: solid; border-width: 3;" align="center"><a href="#schema">Esquema</a></th></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#format_version">Formato de versión</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#brightness_gamma">Gamma de brillo</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#carried_textures">Pre texturas</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#isotropic">Isotropico</a></th></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#sound">Sonido</a></td></tr>
+
+	<tr><td align="left" style="border-style: solid; border-width: 3;"><a href="#textures">Texturas</a></th></tr>
+
+	<tr><th align="center" style="border-style: solid; border-width: 3;"><a href="#query">Palabras claves</a></th></tr>
+</table>
+</br></br><hr></br></br>
+
+<center>
+	<h4 id="json_schema">Esquema JSON</h4>
+	<textarea readonly="true" cols="100" rows="18">
+{
+  "format_version": [ 1, 1, 0 ],
+  "sand": {
+    "isotropic": true,
+    "textures": "sand",
+    "brightness_gamma": 0.55,
+    "sound": "sand"
+  },
+  "@:custom_block": {
+    "brightness_gamma": 1,
+    "textures": "custom_block",
+    "isotropic": false,
+    "sound": "stone"
+  },
+  "@:custom_block_2": {
+    "sound": "wood"
+  }
+}
+	</textarea>
+	<h4 style="color: #888; font-size: 55%; font-family: arial; width: fit-content;">El primer bloque es uno del juego vanilla (la arena); el segundo es un bloque personalizado que no usa el parámetro <b style="color: #555;">minecraft:material_instances</b> y el último si usa ese parámetro.</br></br>El <b style="color: #555;">@</b> es el identificador que tiene un bloque personalizado.</h4>
+</center>
+
+</br>
+<div style="background-color: #ebf4fd; padding: 3%; border-radius: 60px; font-family: arial;">
+<h2 style="font-family: serif; color: #115ea2;">⁠⁠✪ ⁠Importante:</h2>Para los bloques personalizados que tienen el parámetro <b style="color:#115ea2;">minecraft:material_instances</b>, el único parámetro funcional y editable es el sonido.
+</div>
+
+</br></br><hr></br></br>
+
+<h3 id="schema">Esquema</h3>
+El archivo <b style="border: 2px solid #999;font-family:monospace;">blocks.json</b> esta compuesto por las siguientes partes:
+<ul style="font-family: arial;">
+</br>
+	<li><b>format_version</b>: La versión de sintaxis usada en el archivo. El formato de la versión es un <a href="#" style="font-family: monospace;"><b>ARRAY</b></a> y su versión más reciente es: <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">[1, 1, 0]</b></li>
+</br></br>
+<b><i>los siguientes parámetros estan dentro de un <a href="#" style="font-family: monospace;">OBJECT</a> para funcionar en un bloque vanilla o personalizado:</i></b></br>
+</br>
+	<li><b>brightness_gamma</b>: Es el brillo que tendrá la textura del bloque.</li>
+</br>
+	<li><b>carried_textures</b>: Es la textura del bloque que se mostrará en el inventario.</li>
+</br>
+	<li><b>isotropic</b>: Permite que la textura bloque tenga una rotación aleatoria.</li>
+</br>
+	<li><b>sound</b>: Es el sonido del bloque.</li>
+</br>
+	<li><b>textures</b>: Es la textura del bloque.</li>
+</br>
+</ul>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="format_version">Formato de versión</h3>
+La versión de sintaxis usada en el archivo <b style="border: 2px solid #999;font-family:monospace;">blocks.json</b>. El formato de la versión es un <a href="#" style="font-family: monospace;"><b>ARRAY</b></a> y su versión más reciente es: <b style="font-family:monospace;border: 3px solid #aaa; background-color: #ddd;">[1, 1, 0]</b></br>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="brightness_gamma">Gamma de brillo</h3>
+La gamma de brillo permite que la textura de un bloque sea más brillante o mas oscuro, el tipo de valor es una <a href="#" style="font-family: monospace;"><b>NUMERATION</b></a> y su valor por defecto es 1, es <b><i>OPCIONAL</i></b> usar este parámetro.</a>
+
+<center></br>
+	<image id="img-update-brightness" type="image/png" style="border: 7px solid red;" width="50%" src="https://juan3178.github.io/mcdoc-es/assets/img/grass_side_carried-128px.png"></image></br></br>
+	<form>
+		<label>Gamma de brillo (+): <b id="brightness-gamma-amount">1.8</b></br><input type="range" min="0.5" max="3.0" step="0.1" style="width: 75%;" oninput="actualizarBrillo(this.value);"></label>
+	</form>
+	<script>
+	function actualizarBrillo(valor) {
+		document.getElementById('brightness-gamma-amount').innerHTML = valor;
+		document.getElementById('img-update-brightness').style.filter = 'brightness(' + valor + ')';
+}
+</script>
+</center>
+</br></br>
+
+<div style="background-color: #ffff99; padding: 3%; border-radius: 60px; font-family: arial;">
+<h2 style="font-family: serif; color: #888800;">⚠ Advertencia:</h2>Recomendamos que use la gamma de brillo en un rango de <b style="color: #777700;">0.5 - 3.0</b>, para evitar que el bloque se vea muy brillante, o muy oscuro.
+</div>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="carried_textures">Pre texturas</h3>
+Este parámetro permite que un bloque tenga una presentación distinta en el inventario al bloque que finalmente se va a colocar.</br></br>
+
+<b><i>Este parámetro tiene 2 formas de funcionar</i>:</b> a través de una <a href="#" style="font-family: monospace;"><b>STRING</b></a> que directamente coloca la misma textura del bloque a todas las caras del mismo; o tambien como un <a href="#" style="font-family: monospace;"><b>OBJECT</b></a> en el que puedes configurar en que caras vas a colocar la nueva textura.</br></br>
+
+Si usas el <a href="#" style="font-family: monospace;"><b>OBJECT</b></a>, estos son los valores que tiene:
+<ul style="font-family: arial;"></br>
+	<li><b>up</b>: la parte de arriba del bloque.</li></br>
+	<li><b>down</b>: la parte de abajo del bloque.</li></br>
+	<li><b>side</b>: la parte de los lados del bloque. (útil si las caras <b><i>north, south, east, west</i></b> son iguales)</li></br>
+	<li><b>north</b>: la parte norte del bloque.</li></br>
+	<li><b>south</b>: la parte sur del bloque.</li></br>
+	<li><b>east</b>: la parte este del bloque.</li></br>
+	<li><b>west</b>: la parte oeste del bloque.</li></br>
+</ul>
+
+<h4>Ejemplo:</h4></br>
+<center>
+	<textarea readonly="true" cols="100" rows="16">
+{
+  "format_version": [ 1, 1, 0 ],
+  "sand": {
+    "carried_textures": "sand",
+    "sound": "sand"
+  },
+  "dirt": {
+    "carried_textures": {
+      "up": "gravel",
+      "down": "sand",
+      "side": "grass_side_carried"
+    },
+    "sound": "gravel"
+  }
+}
+	</textarea>
+</center></br></br>
+
+<div style="background-color: #efd9fd; padding: 3%; border-radius: 60px; font-family: arial;">
+<h2 style="font-family: serif; color: #3b2e59;">♜ Nota:</h2>Este parámetro es <b style="color: #3b2e59;">OPCIONAL</b>, por lo cual no es necesario usarlo.</div></br></br>
+
+<center>
+
+	<image width="77%" src="https://juan3178.github.io/mcdoc-es/assets/img/screenshot_2025-02-22-18-29-34-056_com.mojang.minecraftpe.png"></image>
+	<h4 style="color: #888; font-size: 55%; font-family: arial; width: fit-content;">Un ejemplo con un bloque personalizado.</h4>
+</center>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="isotropic">Isotropico</h3>
+Crea rotaciones aleatoreas a las texturas de los bloques. Su valor predeterminado es <b style="border: 1px solid #555; font-family: monospace;">false</b>, y no es necesario usar este parámetro.</br></br>
+
+<b><i>Este parámetro tiene 2 formas de funcionar</i>:</b> a través de un <a href="#" style="font-family: monospace;"><b>BOOLEAN</b></a> que directamente coloca la rotation de la textura del bloque a todas las caras del mismo; o tambien como un <a href="#" style="font-family: monospace;"><b>OBJECT</b></a> en el que puedes configurar en que caras vas a colocar la rotación de la textura.</br></br>
+
+Si usas el <a href="#" style="font-family: monospace;"><b>OBJECT</b></a>, estos son los valores que tiene:
+<ul style="font-family: arial;"></br>
+	<li><b>up</b>: la parte de arriba del bloque.</li></br>
+	<li><b>down</b>: la parte de abajo del bloque.</li></br>
+	<li><b>side</b>: la parte de los lados del bloque. (útil si las caras <b><i>north, south, east, west</i></b> son iguales)</li></br>
+	<li><b>north</b>: la parte norte del bloque.</li></br>
+	<li><b>south</b>: la parte sur del bloque.</li></br>
+	<li><b>east</b>: la parte este del bloque.</li></br>
+	<li><b>west</b>: la parte oeste del bloque.</li></br>
+</ul>
+
+<h4>Ejemplo:</h4></br>
+<center>
+	<textarea readonly="true" cols="100" rows="16">
+{
+  "format_version": [ 1, 1, 0 ],
+  "sand": {
+    "carried_textures": "sand",
+    "sound": "sand"
+  },
+  "dirt": {
+    "carried_textures": {
+      "up": "gravel",
+      "down": "sand",
+      "side": "grass_side_carried"
+    },
+    "sound": "gravel"
+  }
+}
+	</textarea>
+</center></br></br>
+
+<i>Mas información aqui:</i></br></br>
+<iframe width="560" height="315" src="https://www.youtube.com/v/jtzSLi72DQU&ab_channel=BobicraftMC" title="Rotación de los bloques - Bobicraft" frameborder="0" allowfullscreen></iframe></br></br>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="sound">Sonido</h3>
+Son los sonidos del bloque cuando tu interactuas con ellos (colocarlos, romperlos, saltar en ellos, caminar sobre de ellos y otras acciones). Su valor predeterminado es <b style="border: 1px solid #555; font-family: monospace;">normal</b>, si se ignora este parámetro, tomará su valor predeterminado.</br></br>
+
+Estos son todos los sonidos de bloques existentes:</br></br>
+
+<b>Mañana los agrego :b</b></br></br>
+
+<h4>Ejemplo:</h4></br>
+<center>
+	<textarea readonly="true" cols="100" rows="6">
+{
+  "format_version": [ 1, 1, 0 ],
+  "dirt": {
+    "sound": "gravel"
+  }
+}
+	</textarea>
+</center>
+
+
+</br></br><hr></br></br>
+
+
+<h3 id="textures">Texturas</h3>
+Tiene exactamente el mismo comportamiento y funciones que el <a href="#carried_textures">Pre texturas</a>, la diferencia es que es obligatorio, (si el parámetro <b>minecraft:material_instances</b> no esta presente en el bloque personalizado), y que además, es la textura que se mostrará mientras estás jugando</br></br>
+
+<h4>Ejemplo:</h4></br>
+<center>
+	<textarea readonly="true" cols="100" rows="16">
+{
+  "format_version": [ 1, 1, 0 ],
+  "sand": {
+    "textures": "sand",
+    "sound": "sand"
+  },
+  "dirt": {
+    "textures": {
+      "up": "gravel",
+      "down": "sand",
+      "side": "grass_side_carried"
+    },
+    "sound": "gravel"
+  }
+}
+	</textarea>
+</center>
+
+
+</br></br></br><hr></br></br></br>
+<center><h1 id="query">Palabras claves</h1></center></br>
+<ol style="font-family: arial;">
+	<li>Array: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Boolean: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Numeration: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>Object: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+	<li>String: <a href="#">Consultar aqui 🔎</a></li>
+</br>
+</ol>
+</br></br></br>
