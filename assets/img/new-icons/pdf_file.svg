@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg
+	version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	x="0%" y="0%"
+	width="100%" height="100%"
+	viewBox="0 0 64.0 64.0"
+	enable-background="new 0 0 64.0 64.0"
+	xml:space="preserve">
+<defs>
+	<style type="text/css">
+		@font-face {
+			font-family: 'roboto';
+		}
+	</style>
+</defs>
+	<path
+		fill="#000000"
+		stroke="#FF0000"
+		fill-opacity="0.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="3.072"
+		stroke-linejoin="round"
+		stroke-linecap="round"
+		d="M57.49,19.34L57.49,59.49L7.05,59.49L7.05,4.86L45.03,4.86L57.49,19.34z"/>
+
+	<text 
+		font-size="14.544039"
+		font-family="roboto"
+		stroke-width="3.2"
+		stroke="#000000"
+		stroke-opacity="0.000"
+		fill-opacity="0"
+		text-anchor="start"
+		font-weight="bold"
+   		transform="rotate(-0.0 32.0 44.999996) scale(1.1127754 1.0)" >
+		<tspan x="15.381425" y="50.567997">PDF</tspan>
+	</text> 
+
+	<text 
+		font-size="14.544039"
+		font-family="roboto"
+		fill="#FF0000"
+		stroke-width="0"
+		fill-opacity="1.000"
+		text-anchor="start"
+		font-weight="bold"
+   		transform="rotate(-0.0 32.0 44.999996) scale(1.1127754 1.0)" >
+
+		<tspan x="15.381425" y="50.567997">PDF</tspan>
+	</text>
+	<path
+		fill="#FF0000"
+		stroke="#FF0000"
+		fill-opacity="0.000"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="0.832"
+		stroke-linejoin="round"
+		stroke-linecap="round"
+		d="M46.87,25.00C41.91,21.23,36.96,17.46,32.00,17.46C27.04,17.46,22.09,21.23,17.13,25.00C22.09,28.77,27.04,32.54,32.00,32.54C36.96,32.54,41.91,28.77,46.87,25.00"/>
+	<path
+		fill="#FF0000"
+		stroke="#FF0000"
+		fill-opacity="0.976"
+		stroke-opacity="1.000"
+		fill-rule="nonzero"
+		stroke-width="0.4113778"
+		stroke-linejoin="round"
+		stroke-linecap="round"
+		d="M32.09,19.65C34.92,19.65,37.20,22.13,37.20,25.19C37.20,28.25,34.92,30.74,32.09,30.74C29.27,30.74,26.99,28.25,26.99,25.19C26.99,22.13,29.27,19.65,32.09,19.65z"/>
+	<path
+		fill="#FFFFFF"
+		stroke="#000000"
+		fill-opacity="0.976"
+		stroke-opacity="0.000"
+		fill-rule="nonzero"
+		stroke-width="0.0"
+		stroke-linejoin="round"
+		stroke-linecap="round"
+		d="M32.09,23.07C33.27,23.07,34.22,24.02,34.22,25.19C34.22,26.36,33.27,27.31,32.09,27.31C30.92,27.31,29.97,26.36,29.97,25.19C29.97,24.02,30.92,23.07,32.09,23.07z"/>
+</svg>
