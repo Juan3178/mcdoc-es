@@ -1,3 +1,35 @@
-* {
-    background-color: default;
+/*feature_rules*/
+
+.folder-feature_rules-content {
+	display: none;
 }
+.folder-feature_rules-content.open {
+	display: block;
+	opacity: 1;
+}
+
+.folder-feature_rules-content li {
+	list-style: none;
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+/*ui*/
+
+.folder-ui-content {
+	display: none;
+}
+.folder-ui-content.open {
+	display: block;
+	opacity: 1;
+}
+
+.folder-ui-content li {
+	list-style: none;
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+
+/*End Folder style*/
+
